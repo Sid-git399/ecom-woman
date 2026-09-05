@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+/* Scan the whole app explicitly rather than relying on Tailwind's root
+   auto-detection, which keys off the Vite root and silently drops utilities
+   when the root moves. */
+@source "./";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   WARDA — design tokens
+   Prêt-à-porter féminin. Algérie. Français et arabe.
+
+   Components must never use raw hex values. Everything below is exposed as a
+   Tailwind utility (bg-plum, text-rose-deep, border-taupe, font-display).
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Self-hosted fonts ──────────────────────────────────────────────────────
+   Generated from client/public/fonts/manifest.json. Cormorant Garamond and
+   DM Sans are variable, so their real weight range is declared: naming a
+   single weight on a variable file makes the browser synthesise the others,
+   which on a high-contrast display serif looks like a smear.               */
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-300-600-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 300 600;
+  font-display: swap;
+  src: url('/fonts/cormorant-300-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url('/fonts/dmsans-300-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300 500;
+  font-display: swap;
+  src: url('/fonts/dmsans-300-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tajawal-400-arabic.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tajawal-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/tajawal-700-arabic.woff2') format('woff2');
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF, U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B, U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D, U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E, U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+
+@font-face {
+  font-family: 'Tajawal';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/tajawal-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@theme {
+  /* ── Colour ───────────────────────────────────────────────────────────────
+     Rose is the signature and it is decorative only: at 3.02:1 on porcelain it
+     cannot legally carry text. `rose-deep` (4.70:1) exists for anything a
+     customer has to read in the brand's colour. There is deliberately no gold
+     anywhere; that belonged to a different shop.                            */
+
+  --color-porcelain: #fbf7f4; /* page base. warm, never pure white */
+  --color-plum: #3e2430;      /* navbar, footer, bands, primary buttons */
+  --color-plum-deep: #2c1922; /* hover on plum, deepest surfaces */
+  --color-ink: #2a1f24;       /* body text, 14.93:1 */
+  --color-ink-soft: #736268;  /* secondary text, 5.36:1 */
+  --color-rose: #c9788a;      /* signature. hairlines, markers, never text */
+  /* Rose that may carry text. Verified against every surface it lands on,
+     not just the page base: 6.00:1 on porcelain, 5.48:1 on shell, 4.51:1 on
+     blush. The previous value cleared porcelain at 4.70:1 and then failed on
+     the shell bands at 4.29:1, which is most of where it is actually used. */
+  --color-rose-deep: #994354;
+  /* And the same colour going the other way: rose text on the plum bands,
+     4.93:1 on plum and 5.83:1 on plum-deep. Plain `rose` reaches only 4.36:1
+     there, which is why it stays decorative. */
+  --color-rose-light: #d18396;
+  --color-blush: #ebd3d6;     /* text on plum (9.88:1), soft fills */
+  --color-taupe: #dccec6;     /* borders, dividers, image frames */
+  --color-shell: #f4ece7;     /* alternating section band, softer than plum */
+
+  /* ── Type ─────────────────────────────────────────────────────────────────
+     Cormorant Garamond carries the brand: mixed case, generous size, never
+     uppercase and never below 20px, where its hairlines vanish. DM Sans is
+     everything else. Tajawal serves Arabic for both roles, because pairing a
+     latin display serif with an Arabic face that has no matching contrast
+     reads as two unrelated websites.                                        */
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: 'Tajawal', 'Segoe UI', sans-serif;
+
+  /* ── Shape ────────────────────────────────────────────────────────────────
+     Softer than a furniture catalogue would allow. Radius goes to 16px on
+     cards and pills, and shadows exist but stay wide and faint.             */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 2px 20px -8px rgb(62 36 48 / 0.13);
+  --shadow-lift: 0 12px 32px -14px rgb(62 36 48 / 0.22);
+
+  /* Garments photograph tall. 3:4 is the fashion standard and it is what the
+     whole grid is built on. */
+  --aspect-garment: 3 / 4;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--color-porcelain);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Arabic swaps the whole type system, not just the direction. Tajawal runs
+     slightly small next to DM Sans, so it is nudged up to match. */
+  html[dir='rtl'] body,
+  html[lang='ar'] body {
+    font-family: var(--font-arabic);
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  /* Casing and family are opt-in through .font-display. Baking them into the
+     element leaks into every heading that is not display type, including
+     product names. */
+  h1, h2, h3, h4 {
+    font-weight: 400;
+    font-size: inherit;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.005em;
+  }
+
+  /* Cormorant has no Arabic. In Arabic the display role falls to Tajawal at a
+     lighter weight, which keeps the hierarchy without a fallback serif that
+     would render as a completely different voice. */
+  html[dir='rtl'] .font-display {
+    font-family: var(--font-arabic);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+
+  ::selection { background: var(--color-blush); color: var(--color-plum-deep); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose-deep);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-porcelain); }
+  ::-webkit-scrollbar-thumb { background: var(--color-taupe); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-rose); }
+}
+
+/* Printing a delivery slip.
+   `print:hidden` handles the controls inside the dialog, but the storefront
+   header, footer and the order list behind it would still print. Hiding
+   everything and re-showing only the slip is the one approach that survives
+   the dialog being nested deep inside the app tree. */
+@media print {
+  body { background: #fff; }
+  body * { visibility: hidden; }
+  #bon-livraison,
+  #bon-livraison * { visibility: visible; }
+  #bon-livraison {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/* Global reduced-motion floor. Components still branch on useReducedMotion so
+   entrances resolve to their final state rather than freezing mid-flight, but
+   this guarantees nothing moves even if one is missed. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
